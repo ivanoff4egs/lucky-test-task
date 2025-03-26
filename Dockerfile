@@ -10,9 +10,9 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-COPY . /var/www/html
+#COPY . /var/www/html
 WORKDIR /var/www/html
-# RUN git clone . git@github.com:ivanoff4egs/lucky-test-task.git
+RUN git clone . git@github.com:ivanoff4egs/lucky-test-task.git
 
 RUN chown -R www-data:www-data /var/www/html/storage && chmod 775 /var/www/html/storage
 
@@ -27,7 +27,7 @@ RUN a2enmod rewrite
 
 EXPOSE 80
 
-# ENTRYPOINT ["bash", "-c", "apache2-foreground"]
+ENTRYPOINT ["bash", "-c", "apache2-foreground"]
 
 
 
