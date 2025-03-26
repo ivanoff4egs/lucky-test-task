@@ -10,15 +10,14 @@ RUN apt-get update && apt-get install -y \
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-#COPY . /var/www/html
-WORKDIR /var/www/html
-RUN git clone . git@github.com:ivanoff4egs/lucky-test-task.git
+COPY . /var/www/html
 
 RUN chown -R www-data:www-data /var/www/html/storage && chmod 775 /var/www/html/storage
 
 RUN mkdir -p /var/www/html/database && touch /var/www/html/database/database.sqlite
 RUN chown -R www-data:www-data /var/www/html/database && chmod 775 /var/www/html/database/database.sqlite
 
+WORKDIR /var/www/html
 RUN composer install --no-dev --optimize-autoloader
 
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
