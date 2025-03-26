@@ -19,6 +19,8 @@ RUN chown -R www-data:www-data /var/www/html/database && chmod 775 /var/www/html
 
 WORKDIR /var/www/html
 RUN composer install --no-dev --optimize-autoloader
+RUN cp .env.example .env
+RUN php artisan key:generate
 
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 
