@@ -24,7 +24,7 @@ RUN php artisan key:generate --ansi
 RUN php artisan migrate --graceful --ansi
 
 RUN npm install
-RUN npm build
+RUN npm run build
 
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
