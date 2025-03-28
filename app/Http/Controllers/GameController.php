@@ -59,21 +59,18 @@ class GameController extends Controller
             $message = sprintf("Congratulations! You WIN %0.2f coins!", $game->coins);
         }
 
-        return redirect()->route('game', ['link_id' => $player->link_id])->with($messageKey, $message);
+        return redirect()->route('game.index', ['link_id' => $player->link_id])->with($messageKey, $message);
     }
 
-//    public function history(int $player_id): RedirectResponse
-//    {
-//        $player = Player::find($player_id);
-//
-//        if (!$player) {
-//            abort(Response::HTTP_NOT_FOUND);
-//        }
-//
-//        if ($player->is_link_expired) {
-//            return redirect()->route('player.index')->with('fail', 'Link has expired');
-//        }
-//
-//
-//    }
+    public function history(int $player_id)
+    {
+        $player = Player::find($player_id);
+
+        if (!$player) {
+            abort(Response::HTTP_NOT_FOUND);
+        }
+
+        $games = $player->games->sortByDesc('created_at')->take(3);
+        return view('history', ['games' => $games, 'player' => $player]);
+    }
 }

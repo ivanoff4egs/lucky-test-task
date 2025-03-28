@@ -15,7 +15,7 @@ Route::post(
     [\App\Http\Controllers\PlayerController::class, 'invalidate']
 )->name('player.link.invalidate');
 
-Route::get('/game/{link_id}', [\App\Http\Controllers\GameController::class, 'index'])->name('game');
+Route::get('/game/{link_id}', [\App\Http\Controllers\GameController::class, 'index'])->name('game.index');
 Route::post('/game/play/{player_id}', [\App\Http\Controllers\GameController::class, 'play'])->name('game.play');
 Route::get(
     '/game/history/{player_id}',

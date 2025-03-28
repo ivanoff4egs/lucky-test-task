@@ -34,7 +34,7 @@ class PlayerController extends Controller
             $playerData
         );
 
-        return redirect()->route('game', ['link_id' => $player->link_id]);
+        return redirect()->route('game.index', ['link_id' => $player->link_id]);
     }
 
     public function regenerate(string $player_id): RedirectResponse

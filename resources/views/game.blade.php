@@ -26,8 +26,9 @@
                 title="I`m feeling lucky"
             />
             <x-action-button
-                route="no route"
+                route="{{ route('game.history', ['player_id' => $player->id]) }}"
                 title="History"
+                method="GET"
             />
         </div>
 
