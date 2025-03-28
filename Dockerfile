@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libsqlite3-dev \
     git \
+    npm \
     && docker-php-ext-install zip pdo pdo_sqlite
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -21,6 +22,9 @@ RUN composer install --no-dev --optimize-autoloader
 RUN cp .env.example .env
 RUN php artisan key:generate --ansi
 RUN php artisan migrate --graceful --ansi
+
+RUN npm install
+RUN npm build
 
 COPY apache-config.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
