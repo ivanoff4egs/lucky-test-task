@@ -3,7 +3,7 @@
 @section('content')
     <table class="w-2/3">
         <tr>
-            <th colspan="4" class="font-bold text-lg text-left pb-3">
+            <th colspan="4" class="text-left pb-3">
                 <x-action-button
                     route="{{route('game.index', ['link_id' => $player->link_id])}}"
                     title="<- Back"

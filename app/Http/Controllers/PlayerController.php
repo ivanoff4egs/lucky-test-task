@@ -46,7 +46,7 @@ class PlayerController extends Controller
         $user->save();
 
         return redirect()->route(
-            'game',
+            'game.index',
             ['link_id' => $link_id]
         )->with('success', 'Your link has been regenerated');
     }
