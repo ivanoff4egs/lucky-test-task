@@ -37,13 +37,12 @@ class PlayerController extends Controller
         return redirect()->route('game.index', ['link_id' => $player->link_id]);
     }
 
-    public function regenerate(string $player_id): RedirectResponse
+    public function regenerate(Player $player): RedirectResponse
     {
-        $user = Player::find($player_id);
         list($link_id, $link_expires_at) = array_values($this->playerService->generateLink());
-        $user->link_id = $link_id;
-        $user->link_expires_at = $link_expires_at;
-        $user->save();
+        $player->link_id = $link_id;
+        $player->link_expires_at = $link_expires_at;
+        $player->save();
 
         return redirect()->route(
             'game.index',
@@ -51,12 +50,11 @@ class PlayerController extends Controller
         )->with('success', 'Your link has been regenerated');
     }
 
-    public function invalidate(string $player_id): RedirectResponse
+    public function invalidate(Player $player): RedirectResponse
     {
-        $user = Player::find($player_id);
-        $user->link_id = null;
-        $user->link_expires_at = null;
-        $user->save();
+        $player->link_id = null;
+        $player->link_expires_at = null;
+        $player->save();
 
         return redirect()->route('player.index')->with('success', 'Your link has been invalidated');
     }

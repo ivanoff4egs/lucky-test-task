@@ -12,21 +12,21 @@
         <span class="mr-2">Your link: </span>
         <span class="mr-4"><a class="text-blue-400" href="{{ $player->link }}">{{ $player->link }}</a></span>
         <x-action-button
-            route="{{ route('player.link.regenerate', ['player_id' => $player->id]) }}"
+            route="{{ route('player.link.regenerate', ['player' => $player]) }}"
             title="Regenerate link"
         />
         <x-action-button
-            route="{{ route('player.link.invalidate', ['player_id' => $player->id]) }}"
+            route="{{ route('player.link.invalidate', ['player' => $player]) }}"
             title="Invalidate link"
         />
 
         <div class="mt-5 flex justify-center">
             <x-action-button
-                route="{{ route('game.play', ['player_id' => $player->id]) }}"
+                route="{{ route('game.play', ['player' => $player]) }}"
                 title="I`m feeling lucky"
             />
             <x-action-button
-                route="{{ route('game.history', ['player_id' => $player->id]) }}"
+                route="{{ route('game.history', ['player' => $player]) }}"
                 title="History"
                 method="GET"
             />

@@ -6,18 +6,18 @@ Route::get('/', [\App\Http\Controllers\PlayerController::class, 'index'])->name(
 Route::post('/register', [\App\Http\Controllers\PlayerController::class, 'register'])->name('player.register');
 
 Route::post(
-    '/link/regenerate/{player_id}',
+    '/link/regenerate/{player}',
     [\App\Http\Controllers\PlayerController::class, 'regenerate']
 )->name('player.link.regenerate');
 
 Route::post(
-    '/link/invalidate/{player_id}',
+    '/link/invalidate/{player}',
     [\App\Http\Controllers\PlayerController::class, 'invalidate']
 )->name('player.link.invalidate');
 
 Route::get('/game/{link_id}', [\App\Http\Controllers\GameController::class, 'index'])->name('game.index');
-Route::post('/game/play/{player_id}', [\App\Http\Controllers\GameController::class, 'play'])->name('game.play');
+Route::post('/game/play/{player}', [\App\Http\Controllers\GameController::class, 'play'])->name('game.play');
 Route::get(
-    '/game/history/{player_id}',
+    '/game/history/{player}',
     [\App\Http\Controllers\GameController::class, 'history']
 )->name('game.history');
